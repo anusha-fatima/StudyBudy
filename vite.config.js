@@ -35,4 +35,3 @@ export default defineConfig({
     strictPort: true
   }
 });
-// Cleaned up config for Vercel deployment
