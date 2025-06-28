@@ -1,0 +1,114 @@
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  width: 100%;
+  padding: 0 24px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  position: absolute; 
+  top: 0;
+  z-index: 1000;
+}
+
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+}
+ 
+  .navbar-logo {
+    color: white;
+    justify-self: flex-start;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #ffffff, #e0e0e0);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-logo:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Navigation menu */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    height: 80px;
+  }
+  
+  .nav-link {
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1.5rem;
+    height: 100%;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    color: #d1b3ff;
+  }
+  
+  .nav-link:after {
+    content: '';
+    position: absolute;
+    bottom: 25px;
+    left: 1.5rem;
+    width: 0;
+    height: 2px;
+    background: #d1b3ff;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover:after {
+    width: calc(100% - 3rem);
+  }
+  
+  /* Mobile menu icon (hidden by default) */
+  .menu-icon {
+    display: none;
+    color: white;
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .nav-menu {
+      display: none;
+    }
+  
+    .menu-icon {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  
+    /* Mobile menu styles would go here */
+  }
