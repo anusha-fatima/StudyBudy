@@ -4,15 +4,21 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 export default defineConfig(({ mode }) => {
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const env = loadEnv(mode, process.cwd(), ''); // Changed to process.cwd()
+  // Vite-native environment loading (no process.env)
+  const envDir = path.dirname(fileURLToPath(import.meta.url));
+  const env = loadEnv(mode, envDir, 'VITE_');
 
   return {
-    base: '/', // Changed from './' for Vercel
+    base: '/',
     plugins: [react()],
     define: {
-      'process.env': {},
-      'import.meta.env.VITE_GEMINI_API_KEY': JSON.stringify(env.VITE_GEMINI_API_KEY)
+      // Pure import.meta.env implementation
+      'import.meta.env': Object.fromEntries(
+        Object.entries(env).map(([key, val]) => [
+          key,
+          JSON.stringify(val)
+        ])
+      )
     },
     optimizeDeps: {
       include: [
@@ -32,7 +38,7 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
       emptyOutDir: true,
-      sourcemap: false, // Disable for production
+      sourcemap: false,
       chunkSizeWarningLimit: 1600,
       rollupOptions: {
         output: {
